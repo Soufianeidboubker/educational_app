@@ -29,5 +29,3 @@ git clone https://github.com/Soufianeidboubker/educational_app.git
 cd educational_app
 flutter pub get
 flutter run -d chrome  # or your target device
-<img width="1024" height="583" alt="<img width="1024" height="583" alt="digital-marketing-analytics (1)" src="https://github.com/user-attachments/assets/dcc3f09c-a73b-4928-af29-d6cfaa9df3c0" />
-digital-marketing-analytics (1)" src="https://github.com/user-attachments/assets/3e7dbad2-e1e5-4841-8df5-db1c9dea0981" />
