@@ -1,20 +1,31 @@
-# Educational App (Flutter)
+# Educational App
 
-A cross-platform educational application built with Flutter.
+A cross-platform Flutter application for educational purposes.
 
-**Current Status**: In Development  
 **Flutter Version**: 3.32.8  
+**Dart Version**: 3.2.0  
+**Status**: Active Development  
 
-## Getting Started
+## Features
+- Multi-platform support (Android, iOS, Web, Windows, macOS, Linux)
+- [Add your key features here]
 
-### Prerequisites
-- Flutter SDK installed
-- Dart 3.2.0+
-- IDE (Android Studio, VS Code, or Xcode)
+## Project Structure
+educational_app/
+├── android/ # Android-specific files
+├── ios/ # iOS-specific files
+├── lib/ # Main Dart code
+│ └── main.dart # Entry point
+├── web/ # Web support
+├── windows/ # Windows desktop
+├── macos/ # macOS desktop
+└── linux/ # Linux desktop
 
-### Installation
+text
+
+## Setup
 ```bash
-git clone https://github.com/soufianeidboubker/educational_app.git
+git clone https://github.com/Soufianeidboubker/educational_app.git
 cd educational_app
 flutter pub get
-flutter run
+flutter run -d chrome  # or your target device
