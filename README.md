@@ -14,7 +14,7 @@ A cross-platform educational application built with Flutter.
 
 ### Installation
 ```bash
-git clone https://github.com/yourusername/educational_app.git
+git clone https://github.com/soufianeidboubker/educational_app.git
 cd educational_app
 flutter pub get
 flutter run
