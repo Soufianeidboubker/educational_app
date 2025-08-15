@@ -3,78 +3,91 @@ import '../models/course.dart';
 
 class CourseCard extends StatelessWidget {
   final Course course;
+  final VoidCallback? onTap;
 
-  const CourseCard({super.key, required this.course});
+  const CourseCard({
+    super.key,
+    required this.course,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
 
-    return Container(
-      margin: EdgeInsets.symmetric(
-        vertical: screenWidth * 0.02,
-        horizontal: screenWidth * 0.02,
-      ),
-      padding: EdgeInsets.all(screenWidth * 0.04),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          // Course Image
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.network(
-              course.imageUrl,
-              width: screenWidth * 0.25,
-              height: screenWidth * 0.25,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  width: screenWidth * 0.25,
-                  height: screenWidth * 0.25,
-                  color: Colors.grey.shade300,
-                  child: const Icon(Icons.image, color: Colors.grey),
-                );
-              },
-            ),
-          ),
-          SizedBox(width: screenWidth * 0.04),
-          // Course Details
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  course.title,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                SizedBox(height: screenWidth * 0.01),
-                Text(
-                  course.description,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                SizedBox(height: screenWidth * 0.01),
-                Text(
-                  'Duration: ${course.duration}',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey.shade600,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: isDarkMode ? Colors.grey.shade800 : Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: isDarkMode
+              ? null
+              : [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.1),
+                    spreadRadius: 1,
+                    blurRadius: 6,
+                    offset: const Offset(0, 2),
                   ),
+                ],
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.asset(
+                course.imageUrl,
+                width: 80,
+                height: 80,
+                fit: BoxFit.cover,
+                errorBuilder: (_, __, ___) => Container(
+                  width: 80,
+                  height: 80,
+                  color: Colors.grey.shade300,
+                  child: const Icon(Icons.broken_image),
                 ),
-              ],
+              ),
             ),
-          ),
-        ],
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    course.title,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    course.description,
+                    style: theme.textTheme.bodyMedium,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      const Icon(Icons.schedule, size: 16),
+                      const SizedBox(width: 4),
+                      Text(
+                        course.duration,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: theme.textTheme.bodySmall?.color?.withOpacity(0.7),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -10,4 +10,5 @@ class Course {
     required this.imageUrl,
     required this.duration,
   });
+
 }
