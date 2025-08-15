@@ -8,7 +8,6 @@ A cross-platform Flutter application for educational purposes.
 
 ## Features
 - Multi-platform support (Android, iOS, Web, Windows, macOS, Linux)
-- [Add your key features here]
 
 ## Project Structure
 educational_app/
